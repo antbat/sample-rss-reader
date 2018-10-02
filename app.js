@@ -1,5 +1,5 @@
 
-
+process.env.NODE_CONFIG_DIR = __dirname + '/config/';
 
 const express = require('express');
 const path = require('path');
