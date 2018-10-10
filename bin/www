@@ -1,6 +1,31 @@
 #!/usr/bin/env node
-var app = require('../app');
+const app = require('../app');
 const config = require('config');
+
+const mongoose = require('mongoose');
+mongoose.connect(config.mongodb.connection);
+
+const RssReader = require('./../service/rssReader.service');
+
+const RBK = require('./../config/rss-settings/RBK/rbk.settings.js');
+const Korrespondent = require('../config/rss-settings/Korrespondent/Korrespondent.settings');
+const Facts = require('./../config/rss-settings/Facts/facts.settings');
+
+const rssReaderRBK = new RssReader(RBK);
+const rssReaderKorrespondent = new RssReader(Korrespondent);
+const rssReaderFacts = new RssReader(Facts);
+
+
+setInterval(async () => {
+    console.log('rss readers are starting here');
+
+    await rssReaderRBK.dataProcess();
+    await rssReaderKorrespondent.dataProcess();
+    await rssReaderFacts.dataProcess();
+
+    console.log('rss readers have written data rss');
+}, 10000)
+
 
 app.set('port', process.env.PORT || config.port);
 
