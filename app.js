@@ -7,12 +7,15 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const routes = require('./routes/index');
 const users = require('./routes/userRoute');
 const api = require('./routes/api');
 
 const app = express();
+
+app.use(cors());
 
 const env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;
@@ -31,7 +34,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/spa', express.static(path.join(__dirname, 'spa')));
 
 app.use('/', routes);
 app.use('/users', users);
