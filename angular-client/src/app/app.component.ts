@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RssService } from './rss.service';
+import { Rss } from './rss.model';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,15 @@ import { RssService } from './rss.service';
 })
 export class AppComponent {
   title = 'angular-client';
+  rss: Rss[];
   constructor(private rssService: RssService) {
     console.log('I am working !!!');
     this.rssService
       .getData()
       .subscribe(
         data => {
-          console.log(data);
+          this.rss = data;
+          console.log('I have got data', data);
         },
         error => {
           console.error(error);
