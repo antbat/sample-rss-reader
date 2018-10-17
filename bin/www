@@ -24,7 +24,7 @@ setInterval(async () => {
     await rssReaderFacts.dataProcess();
 
     console.log('rss readers have written data rss');
-}, 10000)
+}, 10000);
 
 
 app.set('port', process.env.PORT || config.port);

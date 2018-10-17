@@ -8,7 +8,7 @@ import { Rss } from './rss.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-client';
+  title = 'Our angular-client';
   rss: Rss[];
   constructor(private rssService: RssService) {
     console.log('I am working !!!');
