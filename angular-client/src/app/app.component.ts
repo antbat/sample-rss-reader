@@ -8,20 +8,8 @@ import { Rss } from './rss.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-client';
-  rss: Rss[];
-  constructor(private rssService: RssService) {
+  title = 'title of root component';
+  constructor() {
     console.log('I am working !!!');
-    this.rssService
-      .getData()
-      .subscribe(
-        data => {
-          this.rss = data;
-          console.log('I have got data', data);
-        },
-        error => {
-          console.error(error);
-        }
-      );
   }
 }
